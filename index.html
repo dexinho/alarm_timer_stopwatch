@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type='module' src="script.js"></script>
     <title>ALARM TIMER STOPWATCH</title>
 </head>
+
 <body>
-    
+    <div id="container">
+        <div id="clock-div">
+        </div>
+        <div id="selection-div">
+            <select id="tool-select">
+                <option value="alarm-option" selected>ALARM</option>
+                <option value="timer-option">TIMER</option>
+                <option value="stopwatch-option">STOPWATCH</option>
+            </select>
+        </div>
+        <div id="alarm-div">
+            <input type='text' class="inputs" id="alarm-input" placeholder="hh:mm:ss" required>
+            <button class='create-btns' id="create-alarm-btn">Create Alarm</button>
+        </div>
+        <div id="timer-div">
+            <input type='text' class="inputs display-none" id="timer-input" placeholder="hh:mm:ss">
+        </div>
+        <div id="stopwatch-div">
+            <input type='text' class="inputs display-none" id="stopwatch-input" placeholder="hh:mm:ss">
+        </div>
+    </div>
 </body>
+
 </html>
