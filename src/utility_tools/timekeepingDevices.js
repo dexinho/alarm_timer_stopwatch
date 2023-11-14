@@ -1,5 +1,5 @@
 const timekeepingDevices = {
-  currentTime: 0,
+  currentTime: '',
   alarms: [],
   timers: [],
   stopwatches: [],
