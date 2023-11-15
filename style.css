@@ -152,11 +152,6 @@
     width: 100%;
     background-color: var(----background-color);
 }
-.alarm-inputs:nth-child(1) {
-}
-
-#alarm-time-input {
-}
 
 #repeat-alarm-checkbox {
     width: 1.5rem;
