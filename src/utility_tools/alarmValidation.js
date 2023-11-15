@@ -61,15 +61,14 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
     _inputTime.minutes,
     _inputTime.seconds
   );
-
-  const difference = alarmDate - Date.now();
-
-  if (difference <= 0) {
+  
+  if (alarmDate - Date.now() <= 0) {
     alert("Alarm date is behind current date!");
     return;
   }
-
+  
   const dateInterval = setInterval(() => {
+    const difference = alarmDate - Date.now();
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
       (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -77,30 +76,34 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    timeLeft.innerText = ` --- ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    timeLeft.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
     if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
       clearInterval(dateInterval);
     }
   }, 100);
 
-  const createdAlarmSlot = document.createElement("div");
-  const dateTimeSpan = document.createElement("span");
-  const faTrash = document.createElement("i");
   const timeLeft = document.createElement("span");
+  const createdAlarmSlot = document.createElement("div");
+  const dateSlotSpan = document.createElement("span");
+  const timeSlotSpan = document.createElement("span");
+  const faTrash = document.createElement("i");
 
   createdAlarmSlot.id = alarmID;
   createdAlarmSlot.classList.add("created-alarm-slot");
-  dateTimeSpan.classList.add("date-time-span");
+  dateSlotSpan.classList.add("date-slot-span");
+  timeSlotSpan.classList.add("time-slot-span");
   faTrash.classList.add("fa-solid");
   faTrash.classList.add("fa-trash");
+  timeLeft.classList.add('time-left')
 
-  dateTimeSpan.innerText =
-    " " + alarmDateInput.value + " " + alarmTimeInput.value;
+  dateSlotSpan.innerText = alarmDateInput.value
+  timeSlotSpan.innerText =  alarmTimeInput.value;
 
   createdAlarmsDiv.append(createdAlarmSlot);
   createdAlarmSlot.append(faTrash);
-  createdAlarmSlot.append(dateTimeSpan);
+  createdAlarmSlot.append(dateSlotSpan);
+  createdAlarmSlot.append(timeSlotSpan);
   createdAlarmSlot.append(timeLeft);
 
   timekeepingDevices.alarms.push({

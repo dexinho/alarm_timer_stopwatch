@@ -152,7 +152,8 @@ button:hover {
     min-width: none;
     width: 100%;
     max-height: 300px;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     /* display: flex; */
     align-items: center;
     justify-content: center;
@@ -164,12 +165,46 @@ button:hover {
 
 .created-alarm-slot {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.3rem;
+}
+
+.created-alarm-slot * {
+    font-size: 1.2rem;
+}
+
+.time-left {
+    color: rgb(45, 45, 119);
+}
+
+.date-time-span {
+    color: rgb(130, 212, 212);
+}
+
+#created-alarms-columns {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 1.1fr;
+}
+
+#created-alarms-columns>* {
+    text-align: right;
+}
+
+#created-alarms-columns> :nth-child(2) {
+    translate: 0.3rem;
+}
+
+#created-alarms-columns> :nth-child(3) {
+    translate: -2.5rem;
 }
 
 .fa-trash {
     color: rgb(177, 107, 107);
     transition: scale 0.1s ease-in;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
