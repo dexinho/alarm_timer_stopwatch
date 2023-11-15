@@ -23,7 +23,8 @@
             <span id="seconds-right-digit" class="clock-digits">0</span>
         </div>
         <div id="timekeeping-selection-div">
-            <div id="alarm-selected" class="timekeeping-choices border-bottom"><i class="fa-solid fa-bell"></i>&nbsp;ALARM</div>
+            <div id="alarm-selected" class="timekeeping-choices border-bottom"><i
+                    class="fa-solid fa-bell"></i>&nbsp;ALARM</div>
             <div id="stopwatch-selected" class="timekeeping-choices"><i
                     class="fa-solid fa-stopwatch"></i>&nbsp;STOPWATCH</div>
             <div id="timer-selected" class="timekeeping-choices"><i class="fa-solid fa-clock"></i>&nbsp;TIMER</div>
@@ -31,8 +32,11 @@
         </div>
         <div id="alarm-div">
             <div id="time-date-input-div">
-                <input type="text" class="alarm-inputs" id="alarm-date-input" placeholder="dd.mm.yyyy">
-                <input type='text' class="alarm-inputs" id="alarm-time-input" placeholder="hh:mm:ss" required>
+                <label for="alarm-date-input" class="alarm-input-labels"><input type="text" class="alarm-inputs" id="alarm-date-input"
+                        placeholder="dd.mm.yyyy" required></label>
+                <label for="alarm-time-input" class="alarm-input-labels"><input type='text' class="alarm-inputs" id="alarm-time-input"
+                    placeholder="hh:mm:ss" required></label>
+                <label for="repeat-alarm-checkbox">REPEAT<input type='checkbox' id="repeat-alarm-checkbox"></label>
                 <div id="create-alarm-div">
                     <button class='create-btns' id="create-alarm-btn">Create Alarm</button>
                 </div>
