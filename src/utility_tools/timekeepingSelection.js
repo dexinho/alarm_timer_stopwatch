@@ -1,12 +1,14 @@
-import { timekeepingChoices } from "./querySelectors.js";
+import { timekeepingChoices, timekeepingDivs } from "./querySelectors.js";
 
 const timekeepingSelection = () => {
-  timekeepingChoices.forEach((choice) => {
+  timekeepingChoices.forEach((choice, index) => {
     choice.addEventListener("click", () => {
-      timekeepingChoices.forEach((choice) =>
-        choice.classList.remove("border-bottom")
-      );
+      timekeepingChoices.forEach((choice, index) => {
+        choice.classList.remove("border-bottom");
+        timekeepingDivs[index].style.display = "none";
+      });
       choice.classList.add("border-bottom");
+      timekeepingDivs[index].style.display = 'block'
     });
   });
 };
