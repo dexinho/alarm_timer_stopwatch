@@ -25,6 +25,8 @@ const createAlarmBtn = document.querySelector("#create-alarm-btn");
 const alarmInputs = document.querySelectorAll(".alarm-inputs");
 const createdAlarmsDiv = document.querySelector("#created-alarms-div");
 const repeatAlarmCheckbox = document.querySelector("#repeat-alarm-checkbox");
+const alarmSound = document.querySelector("#alarm-sound");
+const timekeepingDivs = document.querySelectorAll(".timekeeping-divs");
 
 export {
   clockDiv,
@@ -51,5 +53,7 @@ export {
   createAlarmBtn,
   alarmInputs,
   createdAlarmsDiv,
-  repeatAlarmCheckbox as checkboxInput,
+  repeatAlarmCheckbox,
+  alarmSound,
+  timekeepingDivs,
 };
