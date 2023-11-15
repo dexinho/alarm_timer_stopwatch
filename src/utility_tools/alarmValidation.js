@@ -3,7 +3,8 @@ import {
   alarmTimeInput,
   createAlarmBtn,
   createdAlarmsDiv,
-  checkboxInput,
+  alarmSound,
+  repeatAlarmCheckbox,
 } from "./querySelectors.js";
 import timekeepingDevices from "./timekeepingDevices.js";
 
@@ -32,6 +33,9 @@ const dateValidation = () => {
     year === finalDate.getFullYear()
   )
     return { year, month, day };
+  else {
+    alert("Date input is invalid!");
+  }
 };
 
 const timeValidation = () => {
@@ -50,11 +54,14 @@ const timeValidation = () => {
     seconds <= 59
   )
     return { hours, minutes, seconds };
+  else {
+    alert("Time input is invalid!");
+  }
 };
 
 const createAndAppendAlarm = (_inputDate, _inputTime) => {
   const alarmID = Date.now();
-  const checkedRepeat = checkboxInput.checked;
+  const checkedRepeat = repeatAlarmCheckbox.checked;
   const alarmDate = new Date(
     _inputDate.year,
     _inputDate.month - 1,
@@ -92,6 +99,13 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
   createdAlarmSlot.append(timeSlotSpan);
   createdAlarmSlot.append(timeLeftSpan);
 
+  if (repeatAlarmCheckbox.checked) {
+    const repeatChecked = document.createElement("i");
+    repeatChecked.classList.add("fa-solid");
+    repeatChecked.classList.add("fa-check");
+    createdAlarmSlot.append(repeatChecked);
+  }
+
   timekeepingDevices.alarms.push({
     alarmID,
     date: _inputDate,
@@ -111,13 +125,16 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
 
     createdAlarmsDiv.removeChild(trashParent);
 
-    timekeepingDevices.alarms = timekeepingDevices.alarms.reduce((acc, alarm) => {
-      if (alarm.alarmID !== alarmID) return [...acc, alarm];
-      else {
-        clearInterval(alarm.alarmInterval);
-        return acc;
-      }
-    }, []);
+    timekeepingDevices.alarms = timekeepingDevices.alarms.reduce(
+      (acc, alarm) => {
+        if (alarm.alarmID !== alarmID) return [...acc, alarm];
+        else {
+          clearInterval(alarm.alarmInterval);
+          return acc;
+        }
+      },
+      []
+    );
   });
 };
 
@@ -141,6 +158,7 @@ const createAlarmInterval = ({
       timeLeftSpan.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     } else {
       clearInterval(alarmInterval);
+      alarmSound.play();
       if (checkedRepeat) {
         const nextDayDate = new Date(alarmDate);
         nextDayDate.setDate(nextDayDate.getDate() + 1);
