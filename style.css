@@ -4,8 +4,9 @@
 }
 
 :root {
-    --clock-color: #806B94;
-    --background-color: #6B9494;
+    --clock-color: #C23D6C;
+    --background-color: #513DC2;
+    --remaining-time: #3DC293;
     --font-color: whitesmoke;
 }
 
@@ -18,7 +19,7 @@
 }
 
 #container {
-    width: 500px;
+    width: 600px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -38,15 +39,15 @@
     align-items: center;
     width: 100%;
     border: 2px solid var(--clock-color);
-    border-left: 2rem solid var(--clock-color);
-    border-right: 2rem solid var(--clock-color);
+    border-left: 5rem solid var(--clock-color);
+    border-right: 5rem solid var(--clock-color);
 }
 
 .clock-digits {
     font-family: 'Digital-7', 'sans-serif';
     width: 2.5rem;
     height: 4rem;
-    border: 1px solid rgb(196, 192, 192);
+    border: 1px solid rgb(165, 153, 153);
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -84,19 +85,19 @@
 }
 
 .fa-bell {
-    color: rgb(182, 182, 207);
-}
-
-.fa-clock {
-    color: rgb(33, 82, 66);
+    color: #87C837;
 }
 
 .fa-stopwatch {
-    color: rgb(128, 166, 197);
+    color: #37C8C1;
+}
+
+.fa-clock {
+    color: rgb(51, 131, 104);
 }
 
 .border-bottom {
-    border-bottom: 1px solid lightblue;
+    border-bottom: 1px solid var(--clock-color);
 }
 
 #alarm-div {
@@ -121,7 +122,20 @@
 }
 
 .alarm-input-labels {
-    width: 30%;
+    width: 33%;
+}
+
+#repeat-daily {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 2px solid red;
+    gap: 1rem;
+}
+
+#repeat-daily > * {
+    width: 100%;
 }
 
 [for='repeat-alarm-checkbox'] {
@@ -132,11 +146,16 @@
 }
 
 .alarm-inputs {
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: 1.2rem;
     height: 3rem;
     width: 100%;
     background-color: var(----background-color);
+}
+.alarm-inputs:nth-child(1) {
+}
+
+#alarm-time-input {
 }
 
 #repeat-alarm-checkbox {
@@ -176,23 +195,25 @@ button:hover {
     flex-wrap: wrap;
     gap: 1rem;
     border: 2px solid var(--clock-color);
+    border-radius: 1rem;
     padding: 1rem;
+    padding-top: 0;
 }
 
 .created-alarm-slot {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1.3rem;
+    display: grid;
+    grid-template-columns: 0.25fr 0.4fr 0.4fr 0.7fr 0.3fr;
 }
 
 .created-alarm-slot * {
     font-size: 1.2rem;
+    margin: auto;
 }
 
 .time-left {
-    color: rgb(45, 45, 119);
+    color: var(--remaining-time);
+    /* translate: 1rem; */
 }
 
 .date-time-span {
@@ -200,21 +221,27 @@ button:hover {
 }
 
 #created-alarms-columns {
+    box-sizing: content-box;
+    position: sticky;
+    top: 0;
     width: 90%;
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1.1fr;
+    grid-template-columns: 0.42fr 0.4fr 0.8fr 0.2fr;
+    background-color: var(--background-color);
+    z-index: 200;
+    border: 30px solid var(--background-color);
+    border-top: 20px solid var(--background-color);
+    border-bottom: 10px solid var(--background-color);
 }
 
 #created-alarms-columns>* {
+    font-weight: bold;
+    z-index: 200;
     text-align: right;
 }
 
-#created-alarms-columns> :nth-child(2) {
-    translate: 0.3rem;
-}
-
-#created-alarms-columns> :nth-child(3) {
-    translate: -2.5rem;
+#remaining-time-span {
+    translate: -1.5rem;
 }
 
 .fa-trash {
