@@ -120,12 +120,28 @@
     width: 100%;
 }
 
+.alarm-input-labels {
+    width: 30%;
+}
+
+[for='repeat-alarm-checkbox'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .alarm-inputs {
     padding: 0.5rem;
     font-size: 1.2rem;
     height: 3rem;
-    width: 30%;
+    width: 100%;
     background-color: var(----background-color);
+}
+
+#repeat-alarm-checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .display-none {
