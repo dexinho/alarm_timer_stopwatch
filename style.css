@@ -18,9 +18,7 @@
 }
 
 #container {
-    width: 400px;
-    max-width: 50%;
-    min-width: 400px;
+    width: 500px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -65,6 +63,9 @@
 
 #create-alarm-div {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .timekeeping-choices {
@@ -123,7 +124,7 @@
     padding: 0.5rem;
     font-size: 1.2rem;
     height: 3rem;
-    width: 47.5%;
+    width: 30%;
     background-color: var(----background-color);
 }
 
@@ -132,7 +133,7 @@
 }
 
 .create-btns {
-    width: 100%;
+    width: 40%;
     height: 3rem;
     font-size: 1.2rem;
     background-color: var(----background-color);
@@ -147,7 +148,35 @@ button:hover {
 }
 
 #created-alarms-div {
+    display: none;
     min-width: none;
+    width: 100%;
     max-height: 300px;
     overflow: scroll;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border: 2px solid var(--clock-color);
+    padding: 1rem;
+}
+
+.created-alarm-slot {
+    width: 100%;
+}
+
+.fa-trash {
+    color: rgb(177, 107, 107);
+    transition: scale 0.1s ease-in;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.fa-trash:hover {
+    scale: 1.1;
+}
+
+.fa-trash:active {
+    scale: 0.9;
 }

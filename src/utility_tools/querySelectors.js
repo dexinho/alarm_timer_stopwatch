@@ -21,8 +21,9 @@ const secondsLeftDigit = document.querySelector("#seconds-left-digit");
 const secondsRightDigit = document.querySelector("#seconds-right-digit");
 const alarmDateInput = document.querySelector("#alarm-date-input");
 const alarmTimeInput = document.querySelector("#alarm-time-input");
-const createAlarmBtn = document.querySelector('#create-alarm-btn')
-const alarmInputs = document.querySelectorAll('.alarm-inputs')
+const createAlarmBtn = document.querySelector("#create-alarm-btn");
+const alarmInputs = document.querySelectorAll(".alarm-inputs");
+const createdAlarmsDiv = document.querySelector("#created-alarms-div");
 
 export {
   clockDiv,
@@ -48,4 +49,5 @@ export {
   alarmTimeInput,
   createAlarmBtn,
   alarmInputs,
+  createdAlarmsDiv,
 };

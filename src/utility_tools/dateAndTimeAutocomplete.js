@@ -6,7 +6,7 @@ const dateAndTimeAutocomplete = () => {
       {
         if (e.target.value.length === 2 || e.target.value.length === 5)
           e.target.value +=
-            e.target.id === "alarm-date-input" ? "/" : ":";
+            e.target.id === "alarm-date-input" ? "." : ":";
       }
     });
   });
