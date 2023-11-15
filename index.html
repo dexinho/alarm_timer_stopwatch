@@ -30,30 +30,34 @@
             <div id="timer-selected" class="timekeeping-choices"><i class="fa-solid fa-clock"></i>&nbsp;TIMER</div>
 
         </div>
-        <div id="alarm-div">
+        <div class="timekeeping-divs" id="alarm-div">
             <div id="time-date-input-div">
-                <label for="alarm-date-input" class="alarm-input-labels"><input type="text" class="alarm-inputs" id="alarm-date-input"
-                        placeholder="dd.mm.yyyy" required></label>
-                <label for="alarm-time-input" class="alarm-input-labels"><input type='text' class="alarm-inputs" id="alarm-time-input"
-                    placeholder="hh:mm:ss" required></label>
-                <label for="repeat-alarm-checkbox">REPEAT<input type='checkbox' id="repeat-alarm-checkbox"></label>
+                <label for="alarm-date-input" class="alarm-input-labels"><input type="text" class="alarm-inputs"
+                        id="alarm-date-input" placeholder="date: dd.mm.yyyy" required></label>
+                <label for="alarm-time-input" class="alarm-input-labels"><input type='text' class="alarm-inputs"
+                        id="alarm-time-input" placeholder="time: hh:mm:ss" required></label>
+                
+                <label for="repeat-alarm-checkbox"><div><span>REPEAT</span>&nbsp;&nbsp;<span>DAILY</span></div><input type='checkbox' id="repeat-alarm-checkbox"></label>
                 <div id="create-alarm-div">
                     <button class='create-btns' id="create-alarm-btn">Create Alarm</button>
                 </div>
                 <div id="created-alarms-div">
-                    <div id="created-alarms-columns"><span>DATE</span><span>TIME</span><span>REMAINING</span></div>
-                    <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="date-slot-span">11/30/2023 16:20:00</span><span class="time-left"></span></div> -->
+                    <div id="created-alarms-columns"><span>DATE</span><span id="time-span">TIME</span><span
+                            id="remaining-time-span">REMAINING</span><i class="fa-solid fa-repeat"></i></div>
+                    <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="date-slot-span">11/30/2023 16:20:00</span><span class="time-left"></span><i class="fa-solid fa-check"></i></div> -->
                     <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="time-slot-span">11/30/2023 16:20:00</span></div> -->
                 </div>
             </div>
         </div>
-        <div id="timer-div">
+        <div class="timekeeping-divs" id="timer-div">
             <input type='text' class="inputs display-none" id="timer-input" placeholder="hh:mm:ss">
         </div>
-        <div id="stopwatch-div">
+        <div class="timekeeping-divs" id="stopwatch-div">
             <input type='text' class="inputs display-none" id="stopwatch-input" placeholder="hh:mm:ss">
         </div>
     </div>
+    <audio id='alarm-sound' src='src/assets/alarm_sound/alarm_sound_1.mp3'></audio>
+
 </body>
 
 </html>
