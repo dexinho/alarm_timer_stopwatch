@@ -3,6 +3,7 @@ import {
   alarmTimeInput,
   createAlarmBtn,
   createdAlarmsDiv,
+  checkboxInput,
 } from "./querySelectors.js";
 import timekeepingDevices from "./timekeepingDevices.js";
 
@@ -53,6 +54,7 @@ const timeValidation = () => {
 
 const createAndAppendAlarm = (_inputDate, _inputTime) => {
   const alarmID = Date.now();
+  const checkedRepeat = checkboxInput.checked;
   const alarmDate = new Date(
     _inputDate.year,
     _inputDate.month - 1,
@@ -61,29 +63,13 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
     _inputTime.minutes,
     _inputTime.seconds
   );
-  
+
   if (alarmDate - Date.now() <= 0) {
     alert("Alarm date is behind current date!");
     return;
   }
-  
-  const dateInterval = setInterval(() => {
-    const difference = alarmDate - Date.now();
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    timeLeft.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
-      clearInterval(dateInterval);
-    }
-  }, 100);
-
-  const timeLeft = document.createElement("span");
+  const timeLeftSpan = document.createElement("span");
   const createdAlarmSlot = document.createElement("div");
   const dateSlotSpan = document.createElement("span");
   const timeSlotSpan = document.createElement("span");
@@ -95,22 +81,28 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
   timeSlotSpan.classList.add("time-slot-span");
   faTrash.classList.add("fa-solid");
   faTrash.classList.add("fa-trash");
-  timeLeft.classList.add('time-left')
+  timeLeftSpan.classList.add("time-left");
 
-  dateSlotSpan.innerText = alarmDateInput.value
-  timeSlotSpan.innerText =  alarmTimeInput.value;
+  dateSlotSpan.innerText = alarmDateInput.value;
+  timeSlotSpan.innerText = alarmTimeInput.value;
 
   createdAlarmsDiv.append(createdAlarmSlot);
   createdAlarmSlot.append(faTrash);
   createdAlarmSlot.append(dateSlotSpan);
   createdAlarmSlot.append(timeSlotSpan);
-  createdAlarmSlot.append(timeLeft);
+  createdAlarmSlot.append(timeLeftSpan);
 
   timekeepingDevices.alarms.push({
     alarmID,
     date: _inputDate,
     time: _inputTime,
-    dateInterval,
+    alarmInterval: createAlarmInterval({
+      alarmID,
+      timeLeftSpan,
+      dateSlotSpan,
+      alarmDate,
+      checkedRepeat,
+    }),
   });
 
   faTrash.addEventListener("click", (e) => {
@@ -118,12 +110,67 @@ const createAndAppendAlarm = (_inputDate, _inputTime) => {
     const createdAlarmsDiv = trashParent.parentElement;
 
     createdAlarmsDiv.removeChild(trashParent);
-    const alarm = timekeepingDevices.alarms.find(
-      (alarm) => alarm.alarmID === alarmID
-    );
 
-    clearInterval(alarm.dateInterval);
+    timekeepingDevices.alarms = timekeepingDevices.alarms.reduce((acc, alarm) => {
+      if (alarm.alarmID !== alarmID) return [...acc, alarm];
+      else {
+        clearInterval(alarm.alarmInterval);
+        return acc;
+      }
+    }, []);
   });
+};
+
+const createAlarmInterval = ({
+  timeLeftSpan,
+  dateSlotSpan,
+  alarmDate,
+  checkedRepeat,
+  alarmID,
+}) => {
+  const updateCreatedAlarmsUI = () => {
+    const difference = alarmDate - Date.now();
+    if (difference >= 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      timeLeftSpan.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    } else {
+      clearInterval(alarmInterval);
+      if (checkedRepeat) {
+        const nextDayDate = new Date(alarmDate);
+        nextDayDate.setDate(nextDayDate.getDate() + 1);
+        const getNextDayDate = nextDayDate.toLocaleDateString("bs");
+
+        const alarmIndex = timekeepingDevices.alarms.findIndex(
+          (alarm) => alarm.alarmID === alarmID
+        );
+
+        dateSlotSpan.textContent = getNextDayDate;
+
+        timekeepingDevices.alarms[alarmIndex].alarmInterval =
+          createAlarmInterval({
+            timeLeftSpan,
+            dateSlotSpan,
+            alarmDate: nextDayDate.getTime(),
+            checkedRepeat,
+            alarmID,
+          });
+
+        console.log(timekeepingDevices.alarms);
+      }
+    }
+  };
+
+  updateCreatedAlarmsUI();
+
+  const alarmInterval = setInterval(updateCreatedAlarmsUI, 100);
+
+  return alarmInterval;
 };
 
 export default alarmValidation;
