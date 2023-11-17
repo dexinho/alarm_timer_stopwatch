@@ -2,62 +2,105 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    <script type='module' src="script.js"></script>
-    <title>ALARM TIMER STOPWATCH</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="script.js"></script>
+  <title>ALARM TIMER STOPWATCH</title>
 </head>
 
 <body>
-    <div id="container">
-        <div id="clock-div">
-            <span id="hours-left-digit" class="clock-digits">0</span>
-            <span id="hours-right-digit" class="clock-digits">0</span>:
-            <span id="minutes-left-digit" class="clock-digits">0</span>
-            <span id="minutes-right-digit" class="clock-digits">0</span>:
-            <span id="seconds-left-digit" class="clock-digits">0</span>
-            <span id="seconds-right-digit" class="clock-digits">0</span>
-        </div>
-        <div id="timekeeping-selection-div">
-            <div id="alarm-selected" class="timekeeping-choices border-bottom"><i
-                    class="fa-solid fa-bell"></i>&nbsp;ALARM</div>
-            <div id="stopwatch-selected" class="timekeeping-choices"><i
-                    class="fa-solid fa-stopwatch"></i>&nbsp;STOPWATCH</div>
-            <div id="timer-selected" class="timekeeping-choices"><i class="fa-solid fa-clock"></i>&nbsp;TIMER</div>
-
-        </div>
-        <div class="timekeeping-divs" id="alarm-div">
-            <div id="time-date-input-div">
-                <label for="alarm-date-input" class="alarm-input-labels"><input type="text" class="alarm-inputs"
-                        id="alarm-date-input" placeholder="date: dd.mm.yyyy" required></label>
-                <label for="alarm-time-input" class="alarm-input-labels"><input type='text' class="alarm-inputs"
-                        id="alarm-time-input" placeholder="time: hh:mm:ss" required></label>
-                
-                <label for="repeat-alarm-checkbox"><div><span>REPEAT</span>&nbsp;&nbsp;<span>DAILY</span></div><input type='checkbox' id="repeat-alarm-checkbox"></label>
-                <div id="create-alarm-div">
-                    <button class='create-btns' id="create-alarm-btn">Create Alarm</button>
-                </div>
-                <div id="created-alarms-div">
-                    <div id="created-alarms-columns"><span>DATE</span><span id="time-span">TIME</span><span
-                            id="remaining-time-span">REMAINING</span><i class="fa-solid fa-repeat"></i></div>
-                    <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="date-slot-span">11/30/2023 16:20:00</span><span class="time-left"></span><i class="fa-solid fa-check"></i></div> -->
-                    <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="time-slot-span">11/30/2023 16:20:00</span></div> -->
-                </div>
-            </div>
-        </div>
-        <div class="timekeeping-divs" id="timer-div">
-            <input type='text' class="inputs display-none" id="timer-input" placeholder="hh:mm:ss">
-        </div>
-        <div class="timekeeping-divs" id="stopwatch-div">
-            <input type='text' class="inputs display-none" id="stopwatch-input" placeholder="hh:mm:ss">
-        </div>
+  <div id="container">
+    <div id="clock-div">
+      <span id="hours-left-digit" class="clock-digits">0</span>
+      <span id="hours-right-digit" class="clock-digits">0</span>:
+      <span id="minutes-left-digit" class="clock-digits">0</span>
+      <span id="minutes-right-digit" class="clock-digits">0</span>:
+      <span id="seconds-left-digit" class="clock-digits">0</span>
+      <span id="seconds-right-digit" class="clock-digits">0</span>
     </div>
-    <audio id='alarm-sound' src='src/assets/alarm_sound/alarm_sound_1.mp3'></audio>
+    <div id="timekeeping-selection-div">
+      <div id="alarm-selected" class="timekeeping-choices border-bottom">
+        <i class="fa-solid fa-bell"></i>&nbsp;ALARM
+      </div>
+      <div id="stopwatch-selected" class="timekeeping-choices">
+        <i class="fa-solid fa-stopwatch"></i>&nbsp;STOPWATCH
+      </div>
+      <div id="timer-selected" class="timekeeping-choices">
+        <i class="fa-solid fa-clock"></i>&nbsp;TIMER
+      </div>
+    </div>
+    <div class="timekeeping-divs" id="alarm-div">
+      <div id="time-date-input-div">
+        <label for="alarm-date-input" class="alarm-input-labels"><input type="text" class="alarm-inputs"
+            id="alarm-date-input" value='17.11.2023' placeholder="date: dd.mm.yyyy" required /></label>
+        <label for="alarm-time-input" class="alarm-input-labels"><input type="text" class="alarm-inputs"
+            id="alarm-time-input" placeholder="time: hh:mm:ss" required /></label>
 
+        <label for="repeat-alarm-checkbox">
+          <div><span>REPEAT</span>&nbsp;&nbsp;<span>DAILY</span></div>
+          <input type="checkbox" id="repeat-alarm-checkbox" />
+        </label>
+        <div id="create-alarm-div">
+          <button class="create-btns" id="create-alarm-btn">
+            Create Alarm
+          </button>
+        </div>
+        <div id="created-alarms-div">
+          <div id="created-alarms-columns">
+            <i class="fa-solid fa-xmark"></i><span>DATE</span><span id="time-span">TIME</span><span
+              id="remaining-time-span">REMAINING</span><i class="fa-solid fa-repeat"></i>
+          </div>
+          <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="date-slot-span">11/30/2023 16:20:00</span><span class="time-left"></span><i class="fa-solid fa-check"></i></div> -->
+          <!-- <div class="created-alarm-slot"><i class="fa-solid fa-trash"></i> <span class="time-slot-span">11/30/2023 16:20:00</span></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="timekeeping-divs display-none" id="stopwatch-div">
+      <div id="stopwatch-digits-div">
+        <span class='stopwatch-digits' id="stopwatch-hours">00</span><span class="stopwatch-digit-desc">h</span>
+        <span class='stopwatch-digits' id="stopwatch-minutes">00</span><span class="stopwatch-digit-desc">m</span>
+        <span class='stopwatch-digits' id="stopwatch-seconds">00</span><span class="stopwatch-digit-desc">s</span>
+        <span class='stopwatch-digits' id="stopwatch-milliseconds">00</span>
+      </div>
+      <div id="stopwatch-btns-div">
+        <button class="stopwatch-btns" id="start-stopwatch-btn">START</button>
+        <button class="stopwatch-btns" id="reset-stopwatch-btn">RESET</button>
+      </div>
+    </div>
+    <div class="timekeeping-divs display-none" id="timer-div">
+      <div id="timer-digits-div">
+        <label for="timer-hours"><input class='timer-digits' id="timer-hours" maxlength="2" max='99' value="00"></label><span
+          class="timer-digit-desc">h</span>
+        <label for="timer-minutes"><input class='timer-digits' id="timer-minutes" maxlength="2" max='60' value="00"></label><span
+          class="timer-digit-desc">m</span>
+        <label for="timer-seconds"><input class='timer-digits' id="timer-seconds" maxlength="2" max='60' value="00"></label><span
+          class="timer-digit-desc">s</span>
+      </div>
+      <div id="timer-btns-div">
+        <button class="timer-btns" id="start-timer-btn">START</button>
+        <button class="timer-btns" id="reset-timer-btn">RESET</button>
+      </div>
+    </div>
+  </div>
+  <audio id="alarm-sound" src="src/assets/alarm_sound/alarm_sound_1.mp3"></audio>
+  <dialog id="alarm-ringing-dialog">
+    <div id="alarm-ringing-div">
+      <div id="wakey-wakey-div"></div>
+      <div id="wakey-time-div"></div>
+      <div id="snooze-turn-off-div">
+        <button class="alarm-ringing-decision" id="turn-off-alarm">
+          TURN OFF
+        </button>
+        <button class="alarm-ringing-decision" id="snooze-alarm">
+          SNOOZE
+        </button>
+      </div>
+    </div>
+  </dialog>
 </body>
 
 </html>
