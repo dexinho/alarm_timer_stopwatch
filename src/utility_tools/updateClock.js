@@ -27,7 +27,7 @@ const updateClock= () => {
   secondsLeftDigit.innerText = seconds.slice(0, 1);
   secondsRightDigit.innerText = seconds.slice(1, 2);
 
-  let currentTime = `${hours}:${minutes}:${seconds}`;
+  let currentTime = Date.now()
   timekeepingDevices.currentTime = currentTime;
 };
 
