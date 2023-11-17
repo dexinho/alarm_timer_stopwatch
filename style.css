@@ -4,9 +4,13 @@
 }
 
 :root {
-    --clock-color: #C23D6C;
-    --background-color: #513DC2;
-    --remaining-time: #3DC293;
+    --alarm-background-color: #571E6B;
+    --alarm-clock-color: #316B1E;
+    --stopwatch-background-color: #2B3383;
+    --stopwatch-clock-color: #837B2B;
+    --timer-background-color: #7F4827;
+    --timer-clock-color: #275E7F;
+    --remaining-time: #52b332;
     --font-color: whitesmoke;
 }
 
@@ -16,6 +20,14 @@
     margin: 0;
     font-family: "28 Days Later";
     color: var(--font-color);
+}
+
+body {
+    width: 99vw;
+    height: 99vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #container {
@@ -28,7 +40,7 @@
     gap: 1rem;
     border: 2px solid black;
     padding: 1rem;
-    background-color: var(--background-color)
+    background-color: var(--alarm-background-color)
 }
 
 #clock-div {
@@ -38,9 +50,13 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 2px solid var(--clock-color);
-    border-left: 5rem solid var(--clock-color);
-    border-right: 5rem solid var(--clock-color);
+    border: 2px solid var(--alarm-clock-color);
+    border-left: 5rem solid var(--alarm-clock-color);
+    border-right: 5rem solid var(--alarm-clock-color);
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .clock-digits {
@@ -85,19 +101,19 @@
 }
 
 .fa-bell {
-    color: #87C837;
+    color: var(--alarm-clock-color);
 }
 
 .fa-stopwatch {
-    color: #37C8C1;
+    color: var(--stopwatch-clock-color);
 }
 
 .fa-clock {
-    color: rgb(51, 131, 104);
+    color: var(--timer-clock-color);
 }
 
 .border-bottom {
-    border-bottom: 1px solid var(--clock-color);
+    border-bottom: 1px solid whitesmoke;
 }
 
 #alarm-div {
@@ -134,7 +150,7 @@
     gap: 1rem;
 }
 
-#repeat-daily > * {
+#repeat-daily>* {
     width: 100%;
 }
 
@@ -170,7 +186,7 @@
 }
 
 #create-alarm-btn:hover {
-    background-color: var(--clock-color);
+    background-color: var(--alarm-clock-color);
 }
 
 button:hover {
@@ -189,7 +205,7 @@ button:hover {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    border: 2px solid var(--clock-color);
+    border: 2px solid var(--alarm-clock-color);
     border-radius: 1rem;
     padding: 1rem;
     padding-top: 0;
@@ -221,12 +237,12 @@ button:hover {
     top: 0;
     width: 90%;
     display: grid;
-    grid-template-columns: 0.42fr 0.4fr 0.8fr 0.2fr;
-    background-color: var(--background-color);
+    grid-template-columns: 0.05fr 0.40fr 0.4fr 0.8fr 0.2fr;
+    background-color: var(--alarm-background-color);
     z-index: 200;
-    border: 30px solid var(--background-color);
-    border-top: 20px solid var(--background-color);
-    border-bottom: 10px solid var(--background-color);
+    border: 30px solid var(--alarm-background-color);
+    border-top: 20px solid var(--alarm-background-color);
+    border-bottom: 10px solid var(--alarm-background-color);
 }
 
 #created-alarms-columns>* {
@@ -240,7 +256,7 @@ button:hover {
 }
 
 .fa-trash {
-    color: rgb(177, 107, 107);
+    color: rgb(184, 132, 132);
     transition: scale 0.1s ease-in;
     font-size: 1.2rem;
     cursor: pointer;
@@ -252,4 +268,164 @@ button:hover {
 
 .fa-trash:active {
     scale: 0.9;
+}
+
+.fa-xmark {
+    translate: -0.3rem;
+}
+
+#alarm-ringing-dialog {
+    position: absolute;
+    inset: 50%;
+    translate: -50% -50%;
+    background-color: #2A7A7F;
+    width: 300px;
+}
+
+#alarm-ringing-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: var(--alarm-clock-color);
+}
+
+#wakey-wakey-div {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--font-color);
+}
+
+#snooze-turn-off-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#wakey-time-div {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#snooze-turn-off-div>button {
+    width: 40%;
+    color: var(--alarm-clock-color);
+    height: 2rem;
+    transition: scale 0.1s ease-in;
+}
+
+#snooze-turn-off-div>button:hover {
+    scale: 1.1;
+}
+
+#snooze-turn-off-div>button:nth-child(1) {
+    color: rgb(155, 62, 62);
+    font-weight: bold;
+}
+
+#snooze-turn-off-div>button:nth-child(2) {
+    color: rgb(79, 62, 155);
+    font-weight: bold;
+}
+
+#stopwatch-div {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#stopwatch-digits-div, #timer-digits-div {
+    border: 2px solid whitesmoke;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#timer-digits-div {
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    border: 0;
+}
+
+.stopwatch-digits {
+    font-size: 3rem;
+    width: 3.5rem;
+}
+
+.stopwatch-digit-desc {
+    font-size: 1.2rem;
+    translate: -0.4rem 0.6rem;
+    width: 1rem;
+}
+
+#stopwatch-milliseconds {
+    font-size: 1.2rem;
+    translate: -0.1rem .55rem;
+    width: 1rem;
+}
+
+#stopwatch-btns-div, #timer-btns-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.stopwatch-btns, .timer-btns {
+    width: 40%;
+    height: 2rem;
+    transition: scale 0.1s ease-in;
+    font-size: 1.2rem;
+}
+
+.stopwatch-btns:hover, .timer-btns {
+    scale: 1.1;
+}
+
+.stopwatch-btns:nth-child(1), .timer-btns:nth-child(1) {
+    background-color: #209C69;
+}
+
+.stopwatch-btns:nth-child(2), .timer-btns:nth-child(2) {
+    background-color: #9C2053;
+}
+
+#timer-div {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 2rem;
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.timer-digits {
+    width: 70px;
+    padding: 1rem;
+    background-color: transparent;
+    font-size: 2rem;
+    border-radius: 100%;
+}
+
+.timer-digit-desc {
+    font-size: 1.2rem;
+    transform: translate(0, 1.5rem);
 }
