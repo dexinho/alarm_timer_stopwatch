@@ -22,7 +22,7 @@ const stopwatchSetup = () => {
 
 const startStopwatch = () => {
   let currentStopwatchTime = timekeepingDevices.stopwatch.stopwatchTime;
-  let increment = timekeepingDevices.stopwatch.increment
+  let increment = timekeepingDevices.stopwatch.increment;
 
   const stopwatchInterval = setInterval(() => {
     currentStopwatchTime += increment;
@@ -48,10 +48,6 @@ const startStopwatch = () => {
   timekeepingDevices.stopwatch.stopwatchInterval = stopwatchInterval;
 };
 
-const pauseStopwatch = () => {
-  clearInterval(timekeepingDevices.stopwatch.stopwatchInterval);
-};
-
 const resetStopwatch = () => {
   clearInterval(timekeepingDevices.stopwatch.stopwatchInterval);
   timekeepingDevices.stopwatch.stopwatchTime = 0;
@@ -66,5 +62,10 @@ const resetStopwatch = () => {
     }
   });
 };
+
+const pauseStopwatch = () => {
+  clearInterval(timekeepingDevices.stopwatch.stopwatchInterval);
+};
+
 
 export default stopwatchSetup;
