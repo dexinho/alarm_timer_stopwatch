@@ -27,8 +27,23 @@ const createdAlarmsDiv = document.querySelector("#created-alarms-div");
 const repeatAlarmCheckbox = document.querySelector("#repeat-alarm-checkbox");
 const alarmSound = document.querySelector("#alarm-sound");
 const timekeepingDivs = document.querySelectorAll(".timekeeping-divs");
+const container = document.querySelector("#container");
+const alarmRingingDialog = document.querySelector("#alarm-ringing-dialog");
+const wakeyTimeDiv = document.querySelector("#wakey-time-div");
+const alarmRingingDecision = document.querySelectorAll(
+  ".alarm-ringing-decision"
+);
+const wakeyWakeyDiv = document.querySelector("#wakey-wakey-div");
+const stopwatchBtns = document.querySelectorAll(".stopwatch-btns");
+const stopwatchDigits = document.querySelectorAll('.stopwatch-digits')
+const timerBtns = document.querySelectorAll('.timer-btns')
+const timerDigits = document.querySelectorAll('.timer-digits')
 
 export {
+  timerBtns,
+  timerDigits,
+  stopwatchDigits,
+  stopwatchBtns,
   clockDiv,
   timekeepingSelectionDiv,
   alarmDiv,
@@ -56,4 +71,9 @@ export {
   repeatAlarmCheckbox,
   alarmSound,
   timekeepingDivs,
+  container,
+  alarmRingingDialog,
+  wakeyTimeDiv,
+  alarmRingingDecision,
+  wakeyWakeyDiv,
 };
