@@ -135,7 +135,7 @@ const appendAlarms = ({
   timeLeftSpan.classList.add("time-left");
   timeLeftSpan.id = alarmID / 1000;
 
-  dateSlotSpan.innerText = alarmDateInput.value;
+  dateSlotSpan.innerText = alarmDateInput.value + '.';
   timeSlotSpan.innerText = alarmTimeInput.value;
 
   createdAlarmsDiv.append(createdAlarmSlot);
@@ -188,6 +188,7 @@ const createAlarmInterval = ({
       const hours = Math.floor(minutes / 60);
       const days = Math.floor(hours / 24);
 
+      timeSlotSpan.textContent = new Date(alarmDate).toLocaleTimeString('bs')
       timeLeftSpan.textContent = `${days}d ${hours % 24}h ${minutes % 60}m ${
         seconds % 60
       }s`;
@@ -204,9 +205,8 @@ const createAlarmInterval = ({
     }
   };
 
-
   updateCreatedAlarmUI();
-
+  
   const alarmInterval = setInterval(updateCreatedAlarmUI, 100);
 
   return alarmInterval;
